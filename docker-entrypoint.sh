@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 FILE=/etc/cups/cupsd.conf
 START_CUPS_BROWSED=/etc/cups/START_CUPS_BROWSED

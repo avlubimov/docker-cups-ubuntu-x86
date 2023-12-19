@@ -11,10 +11,10 @@ LABEL cups="cups-2.4.7-r0"
 ENV VOLUME=/srv
 
 RUN apt  update
-RUN apt install  -y --no-install-recommends file cups cups-filters 
+RUN apt install  -y --no-install-recommends file cups cups-filters cups-browsed
 
-RUN adduser -S -H ${USER} -G ${GROUP}
-#RUN echo "${USER}:${PASSWORD}" | chpasswd
+RUN useradd -r  ${USER} -g ${GROUP}
+RUN echo "${USER}:${PASSWORD}" | chpasswd
 
 RUN mkdir -p ${VOLUME}
 RUN mkdir -p ${VOLUME}/cups
@@ -24,7 +24,7 @@ COPY --chown=root:root --chmod=0755 docker-entrypoint.sh /
 RUN mv /etc/cups/* ${VOLUME}/cups/
 
 
-ENTRYPOINT /docker-entrypoint.sh /bin/sh
+ENTRYPOINT /docker-entrypoint.sh /bin/bash
 
 
 
